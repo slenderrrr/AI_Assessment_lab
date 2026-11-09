@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Assessment & Feedback Lab</title>
+<style>
+:root{--ink:#17233b;--muted:#5e6b82;--blue:#315efb;--pale:#eef2ff;--line:#dfe5ef;--green:#147d52;--amber:#9a5b00}
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:var(--ink);font:16px/1.6 Arial, sans-serif}
+header{background:linear-gradient(125deg,#172554,#315efb);color:white;padding:48px 20px}
+.hero,main{max-width:1000px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:bold;opacity:.8}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.1;margin:10px 0}header p{max-width:700px;color:#e4eaff}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}nav a{color:white;text-decoration:none;border:1px solid #ffffff70;border-radius:24px;padding:8px 14px;font-size:14px}
+main{padding:26px 18px 60px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:24px;margin:18px 0;box-shadow:0 5px 20px #1c2c4d0a}
+h2{margin:0 0 10px;font-size:1.55rem}h3{margin:22px 0 8px}.sub{color:var(--muted);margin-top:0}
+.tag{display:inline-block;background:var(--pale);color:#2949c5;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:bold}
+.question{padding:16px 0;border-top:1px solid var(--line)}.question:first-of-type{border-top:0}
+.question p{font-weight:bold;margin:0 0 9px}.option{display:block;padding:6px 0;color:#34415a}.option input{margin-right:8px}
+button{border:0;background:var(--blue);color:white;border-radius:9px;padding:11px 18px;font-weight:bold;cursor:pointer;margin:8px 8px 0 0}button.secondary{background:#e9edff;color:#2949c5}
+#result{margin-top:15px;padding:14px;border-radius:10px;background:#f0f4ff;display:none}
+details{border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin:10px 0}summary{font-weight:bold;cursor:pointer}
+.prompt{white-space:pre-wrap;background:#f6f8fc;border-left:4px solid var(--blue);padding:14px;border-radius:7px;font-family:Arial,sans-serif}
+.sample{border:1px solid var(--line);border-radius:12px;padding:15px;margin:12px 0}.feedback{background:#f0faf5;border-left:4px solid var(--green);padding:12px;border-radius:7px;margin-top:10px}
+.change{color:var(--amber);font-size:.94rem}.reflection{background:#f8f9fd}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+@media(max-width:600px){.card{padding:17px}header{padding:35px 18px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="hero">
+  <div class="eyebrow">Digital learning • Assessment • Feedback</div>
+  <h1>AI Assessment &amp; Feedback Lab</h1>
+  <p>A sample learning platform showing how AI can support a short mathematics assessment, provide formative feedback, and help a teacher review student understanding.</p>
+  <nav><a href="#assessment">1. AI for Assessment</a><a href="#feedback">2. AI-Supported Feedback</a><a href="#prompts">AI Prompts</a><a href="#reflection">Reflection</a></nav>
+ </div>
+</header>
+<main>
+<section class="card" id="assessment">
+ <span class="tag">SECTION 1</span>
+ <h2>AI for Assessment: Solving Linear Equations</h2>
+ <p class="sub">Choose one answer for each question. Submit the quiz to see your score and feedback. There are 8 questions.</p>
+ <form id="quiz">
+  <div class="question"><p>1. Solve: x + 7 = 12.</p>
+   <label class="option"><input type="radio" name="q1" value="a"> x = 5</label><label class="option"><input type="radio" name="q1" value="b"> x = 19</label><label class="option"><input type="radio" name="q1" value="c"> x = 7</label><label class="option"><input type="radio" name="q1" value="d"> x = -5</label></div>
+  <div class="question"><p>2. Solve: 3x = 21.</p>
+   <label class="option"><input type="radio" name="q2" value="a"> x = 18</label><label class="option"><input type="radio" name="q2" value="b"> x = 7</label><label class="option"><input type="radio" name="q2" value="c"> x = 24</label><label class="option"><input type="radio" name="q2" value="d"> x = 3</label></div>
+  <div class="question"><p>3. Solve: 2x + 4 = 14.</p>
+   <label class="option"><input type="radio" name="q3" value="a"> x = 9</label><label class="option"><input type="radio" name="q3" value="b"> x = 5</label><label class="option"><input type="radio" name="q3" value="c"> x = 7</label><label class="option"><input type="radio" name="q3" value="d"> x = 10</label></div>
+  <div class="question"><p>4. Which operation should be used first to solve 5x − 6 = 19?</p>
+   <label class="option"><input type="radio" name="q4" value="a"> Divide both sides by 5</label><label class="option"><input type="radio" name="q4" value="b"> Subtract 6 from both sides</label><label class="option"><input type="radio" name="q4" value="c"> Add 6 to both sides</label><label class="option"><input type="radio" name="q4" value="d"> Multiply both sides by 5</label></div>
+  <div class="question"><p>5. Solve: 4(x − 2) = 20.</p>
+   <label class="option"><input type="radio" name="q5" value="a"> x = 3</label><label class="option"><input type="radio" name="q5" value="b"> x = 7</label><label class="option"><input type="radio" name="q5" value="c"> x = 18</label><label class="option"><input type="radio" name="q5" value="d"> x = 5</label></div>
+  <div class="question"><p>6. Solve: 2x + 3 = x + 9.</p>
+   <label class="option"><input type="radio" name="q6" value="a"> x = 6</label><label class="option"><input type="radio" name="q6" value="b"> x = 12</label><label class="option"><input type="radio" name="q6" value="c"> x = 3</label><label class="option"><input type="radio" name="q6" value="d"> x = 9</label></div>
+  <div class="question"><p>7. A number increased by 8 is 23. Which equation represents this situation?</p>
+   <label class="option"><input type="radio" name="q7" value="a"> x − 8 = 23</label><label class="option"><input type="radio" name="q7" value="b"> 8x = 23</label><label class="option"><input type="radio" name="q7" value="c"> x + 8 = 23</label><label class="option"><input type="radio" name="q7" value="d"> x + 23 = 8</label></div>
+  <div class="question"><p>8. Solve: 3(x + 2) = 2x + 11.</p>
+   <label class="option"><input type="radio" name="q8" value="a"> x = 3</label><label class="option"><input type="radio" name="q8" value="b"> x = 5</label><label class="option"><input type="radio" name="q8" value="c"> x = 9</label><label class="option"><input type="radio" name="q8" value="d"> x = 17</label></div>
+  <button type="submit">Submit quiz</button><button type="reset" class="secondary">Clear answers</button>
+ </form>
+ <div id="result" aria-live="polite"></div>
+ <details><summary>Answer key (open after completing the quiz)</summary>
+  <ol><li>A — x = 5</li><li>B — x = 7</li><li>B — x = 5</li><li>C — add 6 to both sides first</li><li>B — x = 7</li><li>A — x = 6</li><li>C — x + 8 = 23</li><li>B — x = 5</li></ol>
+ </details>
+</section>
+
+<section class="card" id="feedback">
+ <span class="tag">SECTION 2</span>
+ <h2>AI-Supported Feedback</h2>
+ <p class="sub">Focus question: Question 3 — Solve 2x + 4 = 14. The correct solution is x = 5.</p>
+ <div class="sample"><h3>Student A — Strong answer</h3>
+  <p><b>Student response:</b> “2x + 4 = 14. Subtract 4 from both sides: 2x = 10. Divide both sides by 2: x = 5.”</p>
+  <div class="feedback"><b>Reviewed feedback:</b> Excellent work. Each inverse operation is applied to both sides, and the final answer is correct. You can verify it by substituting 5: 2(5) + 4 = 14. Keep showing each step clearly.</div>
+  <p class="change"><b>Teacher review:</b> No mathematical correction was needed. A substitution check was added to strengthen the feedback.</p>
+ </div>
+ <div class="sample"><h3>Student B — Partly correct answer</h3>
+  <p><b>Student response:</b> “2x + 4 = 14, so 2x = 14 − 4 = 10. Therefore x = 10.”</p>
+  <div class="feedback"><b>Reviewed feedback:</b> You correctly subtracted 4 from both sides and reached 2x = 10. One final step is missing: divide both sides by 2. The solution is x = 5. Try checking your answer in the original equation.</div>
+  <p class="change"><b>Teacher review:</b> The feedback identifies the exact missing step and gives a next action without treating the whole response as incorrect.</p>
+ </div>
+ <div class="sample"><h3>Student C — Incorrect operation</h3>
+  <p><b>Student response:</b> “2x + 4 = 14. I add 4 to both sides, so 2x = 18. Then x = 9.”</p>
+  <div class="feedback"><b>Reviewed feedback:</b> You remembered to use the same operation on both sides, but the operation should undo the +4. Subtract 4 from both sides: 2x = 10. Then divide by 2, giving x = 5. Remember: use inverse operations to isolate the variable.</div>
+  <p class="change"><b>Teacher review:</b> The key misconception is identified: adding 4 does not undo the +4. The corrected feedback models the appropriate inverse operation.</p>
+ </div>
+ <div class="sample"><h3>Student D — Answer only</h3>
+  <p><b>Student response:</b> “x = 5.”</p>
+  <div class="feedback"><b>Reviewed feedback:</b> Your final answer is correct. To demonstrate your reasoning, include the steps: subtract 4 from both sides to get 2x = 10, then divide by 2 to get x = 5. Can you also verify the result by substitution?</div>
+  <p class="change"><b>Teacher review:</b> The answer alone does not show whether the student understands the method. Feedback therefore asks for working and a check rather than assuming how the answer was obtained.</p>
+ </div>
+</section>
+
+<section class="card" id="prompts">
+ <span class="tag">AI PROCESS</span>
+ <h2>Prompts Given to AI</h2>
+ <h3>Prompt 1 — Quiz creation</h3>
+ <div class="prompt">Act as a mathematics teacher. Create an 8-question multiple-choice quiz for lower-secondary students on solving one-variable linear equations. Include a range from basic one-step equations to equations with brackets and variables on both sides. Each question must have four options and exactly one correct answer. Check every answer mathematically and provide a separate answer key. Use clear, age-appropriate wording.</div>
+ <h3>Prompt 2 — Feedback generation</h3>
+ <div class="prompt">Act as a supportive mathematics teacher. The question is: Solve 2x + 4 = 14. The correct answer is x = 5. Give specific, constructive feedback for each sample response. Identify what the student did correctly, explain any error accurately, and suggest one next step. Use an encouraging tone and do not praise incorrect mathematics as correct.</div>
+ <p class="sub">The sample responses and feedback above are presented as an AI-assisted draft that has been checked and edited by the teacher.</p>
+</section>
+
+<section class="card reflection" id="reflection">
+ <span class="tag">REFLECTION</span>
+ <h2>Reflection</h2>
+ <p>AI helped me create a set of questions at different levels and produce feedback quickly for students with different types of answers. It was especially useful for suggesting encouraging language and identifying a possible next step for each learner. However, AI-generated feedback still needs careful checking. For example, feedback must distinguish between a correct final answer and correct mathematical reasoning. A student may give the right answer without showing the method, or make an error when choosing an inverse operation. I reviewed the explanations, checked the calculations, and improved the feedback so that it addressed each student's actual mistake. Next time, I would test the quiz with students, collect real responses, and use their results to make the questions and feedback more closely match their learning needs.</p>
+ <p class="sub">Word count: approximately 130 words.</p>
+</section>
+</main>
+<footer>AI Assessment &amp; Feedback Lab • Mathematics: Linear Equations</footer>
+<script>
+const key={q1:"a",q2:"b",q3:"b",q4:"c",q5:"b",q6:"a",q7:"c",q8:"b"};
+const explanations={
+ q1:"Subtract 7 from both sides: x = 12 − 7 = 5.",
+ q2:"Divide both sides by 3: x = 21 ÷ 3 = 7.",
+ q3:"Subtract 4, then divide by 2: 2x = 10, so x = 5.",
+ q4:"Add 6 to both sides first, then divide by 5.",
+ q5:"Divide by 4: x − 2 = 5. Add 2: x = 7.",
+ q6:"Subtract x and 3: x = 6.",
+ q7:"“Increased by 8” means add 8: x + 8 = 23.",
+ q8:"Expand: 3x + 6 = 2x + 11. Subtract 2x and 6: x = 5? Check: 3x+6=2x+11 gives x=5."
+};
+document.getElementById("quiz").addEventListener("submit",function(e){
+ e.preventDefault();let score=0,answered=0,notes=[];
+ for(let i=1;i<=8;i++){let chosen=document.querySelector('input[name="q'+i+'"]:checked');if(chosen){answered++;if(chosen.value===key["q"+i])score++;else notes.push("Q"+i+": "+explanations["q"+i]);}else notes.push("Q"+i+": Not answered. "+explanations["q"+i]);}
+ const box=document.getElementById("result");box.style.display="block";
+ box.innerHTML="<strong>Your score: "+score+"/8</strong> ("+answered+"/8 questions answered).<br>"+(score===8?"Excellent — all answers are correct!":score>=5?"Good effort. Review the explanations below and try again.":"Keep practising. Review the inverse operations and try the quiz again.")+
+ (notes.length?'<hr><b>Review:</b><ul>'+notes.map(n=>"<li>"+n+"</li>").join("")+"</ul>":"");
+});
+</script>
+</body>
+</html>
